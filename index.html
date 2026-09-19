@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ÚtilHub: herramientas, estudio, comida, compras y servicios en un solo lugar.">
+  <title>ÚtilHub | Todo lo útil en un solo lugar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="light light-1"></div>
+  <div class="light light-2"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#inicio" class="logo">
+      <span>✦</span> ÚtilHub
+    </a>
+
+    <nav class="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#herramientas">Herramientas</a>
+      <a href="#comida">Comida</a>
+      <a href="#compras">Compras</a>
+      <a href="#cerca">Cerca de mí</a>
+      <a href="#estudio">Estudio</a>
+    </nav>
+
+    <button class="google-btn" onclick="iniciarGoogle()">
+      <span>G</span> Iniciar sesión
+    </button>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- HERO -->
+  <main id="inicio">
+
+    <section class="hero">
+
+      <div class="hero-text">
+        <span class="badge">⚡ TU CENTRO DE UTILIDADES</span>
+
+        <h1>
+          Todo lo que necesitas,
+          <span>en un solo lugar.</span>
+        </h1>
+
+        <p>
+          ÚtilHub reúne herramientas para estudiar, organizarte,
+          calcular, buscar comida, encontrar tiendas y mucho más.
+        </p>
+
+        <div class="hero-search">
+          <input
+            id="buscador"
+            type="search"
+            placeholder="¿Qué necesitas? Ej: calculadora, comida, compras..."
+            oninput="buscarHerramienta()"
+          >
+          <button onclick="buscarHerramienta()">🔎 Buscar</button>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#herramientas" class="btn primary">Explorar herramientas</a>
+          <a href="#comida" class="btn secondary">🍔 Buscar comida</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orb">
+          <div class="orb-center">✦</div>
+
+          <div class="floating-card card-a">
+            🧮
+            <strong>Calcula</strong>
+          </div>
+
+          <div class="floating-card card-b">
+            🍔
+            <strong>Encuentra</strong>
+          </div>
+
+          <div class="floating-card card-c">
+            🛒
+            <strong>Compra</strong>
+          </div>
+
+          <div class="floating-card card-d">
+            📚
+            <strong>Estudia</strong>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BUSQUEDA -->
+    <section class="quick-section">
+      <div>
+        <span class="section-label">ÚTIL PARA TU DÍA</span>
+        <h2>¿Qué quieres hacer?</h2>
+      </div>
+
+      <div class="quick-grid">
+        <button onclick="abrirHerramienta('calculadora')">🧮 Calcular</button>
+        <button onclick="abrirHerramienta('convertidor')">📏 Convertir</button>
+        <button onclick="abrirHerramienta('temporizador')">⏱️ Medir tiempo</button>
+        <button onclick="abrirHerramienta('tareas')">✅ Organizarme</button>
+        <button onclick="document.querySelector('#comida').scrollIntoView({behavior:'smooth'})">🍔 Comer</button>
+        <button onclick="document.querySelector('#compras').scrollIntoView({behavior:'smooth'})">🛒 Comprar</button>
+      </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section id="herramientas" class="section">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-label">HERRAMIENTAS</span>
+          <h2>Utilidades para todos los días</h2>
+        </div>
+
+        <span id="resultadoBusqueda" class="search-result"></span>
+      </div>
+
+      <div class="tool-grid" id="toolGrid">
+
+        <article class="herramienta" data-nombre="calculadora cálculo matemáticas">
+          <div class="tool-icon">🧮</div>
+          <h3>Calculadora</h3>
+          <p>Realiza operaciones rápidamente.</p>
+          <button onclick="abrirHerramienta('calculadora')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="convertidor unidades metros kilos litros">
+          <div class="tool-icon">📏</div>
+          <h3>Conversor de unidades</h3>
+          <p>Convierte medidas de forma sencilla.</p>
+          <button onclick="abrirHerramienta('convertidor')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="porcentaje porcentaje">
+          <div class="tool-icon">％</div>
+          <h3>Porcentajes</h3>
+          <p>Calcula porcentajes fácilmente.</p>
+          <button onclick="abrirHerramienta('porcentaje')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="descuento descuento precio">
+          <div class="tool-icon">🏷️</div>
+          <h3>Descuentos</h3>
+          <p>Calcula cuánto pagarás con descuento.</p>
+          <button onclick="abrirHerramienta('descuento')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="días fechas contador fecha">
+          <div class="tool-icon">📅</div>
+          <h3>Contador de días</h3>
+          <p>Calcula días entre dos fechas.</p>
+          <button onclick="abrirHerramienta('dias')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="temperatura grados celsius fahrenheit">
+          <div class="tool-icon">🌡️</div>
+          <h3>Temperatura</h3>
+          <p>Convierte °C, °F y K.</p>
+          <button onclick="abrirHerramienta('temperatura')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="peso kilos gramos libras">
+          <div class="tool-icon">⚖️</div>
+          <h3>Conversor de peso</h3>
+          <p>Convierte kg, g y lb.</p>
+          <button onclick="abrirHerramienta('peso')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="distancia kilómetros metros millas">
+          <div class="tool-icon">🛣️</div>
+          <h3>Distancia</h3>
+          <p>Convierte distancias.</p>
+          <button onclick="abrirHerramienta('distancia')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="temporizador tiempo">
+          <div class="tool-icon">⏱️</div>
+          <h3>Temporizador</h3>
+          <p>Cuenta regresiva para tus actividades.</p>
+          <button onclick="abrirHerramienta('temporizador')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="cronómetro cronometro stopwatch">
+          <div class="tool-icon">⏲️</div>
+          <h3>Cronómetro</h3>
+          <p>Mide el tiempo transcurrido.</p>
+          <button onclick="abrirHerramienta('cronometro')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="notas escribir apuntes">
+          <div class="tool-icon">📝</div>
+          <h3>Notas</h3>
+          <p>Guarda tus notas en este dispositivo.</p>
+          <button onclick="abrirHerramienta('notas')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="tareas lista pendientes organización">
+          <div class="tool-icon">✅</div>
+          <h3>Lista de tareas</h3>
+          <p>Organiza tus pendientes.</p>
+          <button onclick="abrirHerramienta('tareas')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="compras supermercado lista comprar">
+          <div class="tool-icon">🛒</div>
+          <h3>Lista de compras</h3>
+          <p>Organiza lo que necesitas comprar.</p>
+          <button onclick="abrirHerramienta('compras-lista')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="contraseña password seguridad">
+          <div class="tool-icon">🔐</div>
+          <h3>Contraseñas</h3>
+          <p>Genera contraseñas aleatorias.</p>
+          <button onclick="abrirHerramienta('password')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="qr código código qr">
+          <div class="tool-icon">▦</div>
+          <h3>Código QR</h3>
+          <p>Genera un QR a partir de un texto o enlace.</p>
+          <button onclick="abrirHerramienta('qr')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="número aleatorio random">
+          <div class="tool-icon">🎲</div>
+          <h3>Número aleatorio</h3>
+          <p>Obtén un número dentro de un rango.</p>
+          <button onclick="abrirHerramienta('aleatorio')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="dado juego aleatorio">
+          <div class="tool-icon">🎯</div>
+          <h3>Dado</h3>
+          <p>Lanza un dado virtual.</p>
+          <button onclick="abrirHerramienta('dado')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="diccionario palabras definición">
+          <div class="tool-icon">📖</div>
+          <h3>Diccionario</h3>
+          <p>Consulta el significado de palabras.</p>
+          <button onclick="abrirHerramienta('diccionario')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="organizador estudio estudiar">
+          <div class="tool-icon">📚</div>
+          <h3>Organizador de estudio</h3>
+          <p>Planifica tus materias y sesiones.</p>
+          <button onclick="abrirHerramienta('estudio-organizador')">Abrir</button>
+        </article>
+
+        <article class="herramienta" data-nombre="consejos recomendaciones tips">
+          <div class="tool-icon">💡</div>
+          <h3>Consejos</h3>
+          <p>Ideas rápidas para organizarte mejor.</p>
+          <button onclick="abrirHerramienta('consejos')">Abrir</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- COMIDA -->
+    <section id="comida" class="section special-section">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-label">COMIDA</span>
+          <h2>Encuentra lo que quieres comer</h2>
+          <p class="section-description">
+            Busca opciones, revisa la información disponible y entra al servicio
+            correspondiente para realizar tu pedido.
+          </p>
+        </div>
+      </div>
+
+      <div class="notice">
+        ℹ️ <strong>ÚtilHub no realiza pedidos por ti.</strong>
+        Tú eliges el establecimiento y realizas el pedido directamente.
+      </div>
+
+      <div class="search-panel">
+        <input
+          id="buscarComida"
+          type="search"
+          placeholder="Buscar pizza, pollo, hamburguesas, comida..."
+          oninput="filtrarComida()"
+        >
+
+        <div class="category-buttons">
+          <button onclick="filtrarCategoriaComida('todos')">Todos</button>
+          <button onclick="filtrarCategoriaComida('pizza')">🍕 Pizza</button>
+          <button onclick="filtrarCategoriaComida('pollo')">🍗 Pollo</button>
+          <button onclick="filtrarCategoriaComida('hamburguesa')">🍔 Hamburguesa</button>
+          <button onclick="filtrarCategoriaComida('peruana')">🇵🇪 Peruana</button>
+        </div>
+      </div>
+
+      <div id="comidaGrid" class="service-grid">
+
+        <article class="service-card" data-categoria="pizza" data-nombre="pizza">
+          <div class="service-icon">🍕</div>
+          <h3>Pizza</h3>
+          <p>Encuentra opciones de pizza y revisa dónde pedir.</p>
+          <button onclick="buscarServicio('pizza')">Buscar opciones</button>
+        </article>
+
+        <article class="service-card" data-categoria="pollo" data-nombre="pollo">
+          <div class="service-icon">🍗</div>
+          <h3>Pollo</h3>
+          <p>Busca opciones de pollo y restaurantes.</p>
+          <button onclick="buscarServicio('pollo')">Buscar opciones</button>
+        </article>
+
+        <article class="service-card" data-categoria="hamburguesa" data-nombre="hamburguesa">
+          <div class="service-icon">🍔</div>
+          <h3>Hamburguesas</h3>
+          <p>Encuentra lugares donde ofrecen hamburguesas.</p>
+          <button onclick="buscarServicio('hamburguesas')">Buscar opciones</button>
+        </article>
+
+        <article class="service-card" data-categoria="peruana" data-nombre="comida peruana ceviche">
+          <div class="service-icon">🍲</div>
+          <h3>Comida peruana</h3>
+          <p>Busca restaurantes de comida peruana.</p>
+          <button onclick="buscarServicio('comida peruana')">Buscar opciones</button>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- COMPRAS -->
+    <section id="compras" class="section">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-label">COMPRAS</span>
+          <h2>Encuentra productos y tiendas</h2>
+          <p class="section-description">
+            ÚtilHub te ayuda a organizar tu búsqueda. La compra se realiza
+            directamente con la tienda o servicio elegido.
+          </p>
+        </div>
+      </div>
+
+      <div class="notice">
+        🛍️ <strong>Tú realizas la compra.</strong>
+        ÚtilHub funciona como una herramienta para encontrar y organizar opciones.
+      </div>
+
+      <div class="shopping-tools">
+
+        <div class="shopping-box">
+          <span>🔎</span>
+          <h3>Buscar productos</h3>
+          <p>Busca un producto y abre opciones de tiendas.</p>
+
+          <div class="inline-form">
+            <input id="productoBusqueda" type="search" placeholder="Ej: audífonos">
+            <button onclick="buscarProducto()">Buscar</button>
+          </div>
+
+          <div id="resultadoProducto" class="mini-result"></div>
+        </div>
+
+        <div class="shopping-box">
+          <span>💰</span>
+          <h3>Calculadora de compra</h3>
+          <p>Calcula cuánto cuestan varios productos.</p>
+
+          <div class="inline-form">
+            <input id="precio1" type="number" min="0" step="0.01" placeholder="Precio 1">
+            <input id="precio2" type="number" min="0" step="0.01" placeholder="Precio 2">
+            <input id="precio3" type="number" min="0" step="0.01" placeholder="Precio 3">
+            <button onclick="calcularCompra()">Total</button>
+          </div>
+
+          <div id="totalCompra" class="big-result">S/ 0.00</div>
+        </div>
+
+        <div class="shopping-box">
+          <span>📋</span>
+          <h3>Mi lista</h3>
+          <p>Guarda productos que quieras recordar.</p>
+
+          <div class="inline-form">
+            <input id="productoLista" type="text" placeholder="Producto">
+            <button onclick="agregarProductoLista()">Agregar</button>
+          </div>
+
+          <ul id="listaProductos" class="simple-list"></ul>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CERCA DE MI -->
+    <section id="cerca" class="section special-section">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-label">CERCA DE TI</span>
+          <h2>Busca servicios y lugares</h2>
+          <p class="section-description">
+            Encuentra categorías de establecimientos y lugares importantes.
+          </p>
+        </div>
+      </div>
+
+      <div class="near-grid">
+
+        <button class="near-card" onclick="buscarCerca('restaurantes')">
+          <span>🍽️</span>
+          <strong>Restaurantes</strong>
+          <small>Buscar restaurantes</small>
+        </button>
+
+        <button class="near-card" onclick="buscarCerca('supermercados')">
+          <span>🛒</span>
+          <strong>Supermercados</strong>
+          <small>Buscar supermercados</small>
+        </button>
+
+        <button class="near-card" onclick="buscarCerca('farmacias')">
+          <span>💊</span>
+          <strong>Farmacias</strong>
+          <small>Buscar farmacias</small>
+        </button>
+
+        <button class="near-card" onclick="buscarCerca('tiendas')">
+          <span>🏪</span>
+          <strong>Tiendas</strong>
+          <small>Buscar tiendas</small>
+        </button>
+
+        <button class="near-card" onclick="buscarCerca('ferreterías')">
+          <span>🔧</span>
+          <strong>Ferreterías</strong>
+          <small>Buscar servicios</small>
+        </button>
+
+        <button class="near-card" onclick="buscarCerca('servicios')">
+          <span>🧰</span>
+          <strong>Servicios</strong>
+          <small>Buscar servicios</small>
+        </button>
+
+      </div>
+
+      <div class="map-search-box">
+        <h3>📍 Buscar en mapas</h3>
+        <p>
+          Escribe un lugar y ÚtilHub abrirá una búsqueda en mapas.
+        </p>
+
+        <div class="inline-form">
+          <input id="mapaBusqueda" type="text" placeholder="Ej: restaurantes cerca de mí">
+          <button onclick="abrirMapa()">Buscar</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ESTUDIO -->
+    <section id="estudio" class="section study-section">
+
+      <div class="study-content">
+        <span class="section-label">PARA ESTUDIANTES</span>
+
+        <h2>Organiza mejor tu estudio</h2>
+
+        <p>
+          Usa las herramientas de ÚtilHub para organizar tareas,
+          notas, tiempo y sesiones de estudio.
+        </p>
+
+        <div class="study-list">
+          <div>✓ Organiza tus tareas</div>
+          <div>✓ Guarda notas</div>
+          <div>✓ Controla tu tiempo</div>
+          <div>✓ Planifica sesiones</div>
+          <div>✓ Usa calculadoras y conversores</div>
+        </div>
+
+        <button class="btn primary" onclick="abrirHerramienta('estudio-organizador')">
+          Abrir organizador
+        </button>
+      </div>
+
+      <div class="study-visual">
+        <div class="study-screen">
+          <div class="screen-top"></div>
+          <div class="screen-line"></div>
+          <div class="screen-line short"></div>
+          <div class="screen-box"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section benefits">
+
+      <div class="section-heading center">
+        <span class="section-label">¿POR QUÉ ÚTILHUB?</span>
+        <h2>Diseñado para ser realmente útil</h2>
+      </div>
+
+      <div class="benefit-grid">
+
+        <article>
+          <span>⚡</span>
+          <h3>Rápido</h3>
+          <p>Accede a herramientas sin perder tiempo.</p>
+        </article>
+
+        <article>
+          <span>📱</span>
+          <h3>Multidispositivo</h3>
+          <p>Diseñado para computadora, tablet y celular.</p>
+        </article>
+
+        <article>
+          <span>🔒</span>
+          <h3>Privado</h3>
+          <p>Muchas herramientas guardan los datos localmente.</p>
+        </article>
+
+        <article>
+          <span>🧩</span>
+          <h3>Todo en uno</h3>
+          <p>Herramientas, estudio, comida, compras y servicios.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+
+      <button class="close-modal" onclick="cerrarModal()">×</button>
+
+      <div id="modalBody"></div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-logo">
+      ✦ ÚtilHub
+    </div>
+
+    <p>
+      Encuentra. Organiza. Calcula. Decide.
+    </p>
+
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#herramientas">Herramientas</a>
+      <a href="#comida">Comida</a>
+      <a href="#compras">Compras</a>
+      <a href="#cerca">Cerca de mí</a>
+    </div>
+
+    <small>
+      © 2026 ÚtilHub. Proyecto web.
+    </small>
+
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
